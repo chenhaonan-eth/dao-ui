@@ -30,7 +30,6 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import { selectAllSites } from 'redux/site/sitesSlice';
 
 // assets
 import { IconLogout, IconSettings, IconUser } from '@tabler/icons';
@@ -42,8 +41,7 @@ const ProfileSection = () => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
     const navigate = useNavigate();
-    const sites = useSelector(selectAllSites);
-    const isLogin = sites[0]?.isLogin;
+    const isLogin = false;
     const [sdm, setSdm] = useState(true);
     const [notification, setNotification] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -147,9 +145,7 @@ const ProfileSection = () => {
                                         <Divider />
                                     </Box>
                                     <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                                        {sites.length > 0 ? <UpgradePlanCard /> : null}
-
-                                        {sites.length > 0 ? <Divider /> : null}
+                                        <UpgradePlanCard />
                                         <Box sx={{ p: 2 }}>
                                             <Card
                                                 sx={{

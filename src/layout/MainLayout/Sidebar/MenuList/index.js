@@ -1,18 +1,14 @@
 // material-ui
 import { Typography } from '@mui/material';
-// react-redux
-import { useSelector } from 'react-redux';
-import { selectEntitiesSidebar } from 'redux/sidebar/sidebarSlice';
 
 // project imports
 import NavGroup from './NavGroup';
-// import menuItem from 'menu-items';
+import menuItem from 'menu-items';
 
 // ==============================|| SIDEBAR MENU LIST ||============================== //
 
 const MenuList = () => {
-    const sidebarItems = useSelector(selectEntitiesSidebar);
-    const navItems = sidebarItems.map((item) => {
+    const navItems = menuItem?.items?.map((item) => {
         switch (item.type) {
             case 'group':
                 return <NavGroup key={item.id} item={item} />;

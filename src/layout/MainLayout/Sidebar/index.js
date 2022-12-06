@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // material-ui
@@ -21,13 +20,7 @@ import { drawerWidth } from 'layout/Customization/constant';
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
-    // updata Sidebar kafka Info
-    useEffect(() => {
-        if (drawerOpen) {
-            console.log(drawerOpen);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [drawerOpen]);
+
     const drawer = (
         <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>

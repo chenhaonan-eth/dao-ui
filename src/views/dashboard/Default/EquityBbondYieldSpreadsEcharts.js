@@ -101,7 +101,7 @@ function EquityBbondYieldSpreadsEcharts() {
             newOption.xAxis.data = Object.keys(response.data);
             setOption(newOption);
         });
-    }, []);
+    }, [option]);
 
     return (
         <MainCard>

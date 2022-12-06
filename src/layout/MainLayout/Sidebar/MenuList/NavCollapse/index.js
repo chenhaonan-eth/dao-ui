@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -9,7 +8,6 @@ import { Collapse, List, ListItemButton, ListItemIcon, ListItemText, Typography 
 
 // project imports
 import NavItem from '../NavItem';
-import config from 'config';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -20,16 +18,12 @@ import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 const NavCollapse = ({ menu, level }) => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
-    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
 
     const handleClick = () => {
         setOpen(!open);
         setSelected(!selected ? menu.id : null);
-        if (level !== 1) {
-            navigate(`${config.basename}${menu.url}`);
-        }
     };
 
     // menu collapse & item

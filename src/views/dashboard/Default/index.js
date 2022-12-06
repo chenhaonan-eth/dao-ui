@@ -3,9 +3,6 @@ import { useEffect, useState } from 'react';
 // material-ui
 import { Grid } from '@mui/material';
 
-// project imports
-import TotalGrowthBarChart from './TotalGrowthBarChart';
-
 import EquityBbondYieldSpreadsEcharts from './EquityBbondYieldSpreadsEcharts';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';

@@ -1,15 +1,12 @@
-import dashboard from '../redux/sidebar/dashboard';
-import topics from '../redux/sidebar/topics';
-// import consumers from './consumers';
-// import brokers from './brokers';
-// import producers from './producers';
-// import configs from './configs';
-import pages from './pages';
+import d from './Dashboard';
+import b from './BusinessCycle';
+import e from './EconomicIndicators';
+import g from './GiantWaveInvestmentMethod';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-    items: [dashboard, pages, topics]
+    items: [d, e, b, g]
 };
 
 export default menuItems;

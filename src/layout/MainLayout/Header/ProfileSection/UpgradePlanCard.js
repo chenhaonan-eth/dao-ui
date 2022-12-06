@@ -5,10 +5,6 @@ import { Button, Card, Divider, CardContent, Grid, Stack, Typography } from '@mu
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
-// redux
-import { useSelector } from 'react-redux';
-import { selectAllSites } from 'redux/site/sitesSlice';
-
 // styles
 const CardStyle = styled(Card)(({ theme }) => ({
     background: theme.palette.warning.light,
@@ -42,44 +38,36 @@ const CardStyle = styled(Card)(({ theme }) => ({
 
 // ==============================|| Site info ||============================== //
 
-const UpgradePlanCard = () => {
-    const sites = useSelector(selectAllSites);
-    const site = sites[0];
-    return (
-        <CardStyle>
-            <CardContent>
-                <Grid container direction="column" spacing={2}>
-                    <Grid item>
-                        <Typography variant="h4">
-                            {site.ip} : {site.port}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography variant="subtitle2" color="grey.900" sx={{ opacity: 0.6 }}>
-                            creation time <br />
-                            {new Date(parseInt(site.loginTime, 10) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')}
-                        </Typography>
-                        <Divider />
-                        <Typography variant="subtitle2" color="grey.900" sx={{ opacity: 0.6 }}>
-                            <Typography>
-                                Description <br />
-                            </Typography>
-                            {site.description}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Stack direction="row">
-                            <AnimateButton>
-                                <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
-                                    Go Particulars
-                                </Button>
-                            </AnimateButton>
-                        </Stack>
-                    </Grid>
+const UpgradePlanCard = () => (
+    <CardStyle>
+        <CardContent>
+            <Grid container direction="column" spacing={2}>
+                <Grid item>
+                    <Typography variant="h4">天气</Typography>
                 </Grid>
-            </CardContent>
-        </CardStyle>
-    );
-};
+                <Grid item>
+                    <Typography variant="subtitle2" color="grey.900" sx={{ opacity: 0.6 }}>
+                        creation time <br />
+                    </Typography>
+                    <Divider />
+                    <Typography variant="subtitle2" color="grey.900" sx={{ opacity: 0.6 }}>
+                        <Typography>
+                            Description <br />
+                        </Typography>
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Stack direction="row">
+                        <AnimateButton>
+                            <Button variant="contained" color="warning" sx={{ boxShadow: 'none' }}>
+                                Go Particulars
+                            </Button>
+                        </AnimateButton>
+                    </Stack>
+                </Grid>
+            </Grid>
+        </CardContent>
+    </CardStyle>
+);
 
 export default UpgradePlanCard;
