@@ -49,7 +49,7 @@ const economic = {
                             id: 'futures-foreign-cad',
                             title: '铜',
                             type: 'item',
-                            url: '/macroscopic/FuturesForeignHist/CAD',
+                            url: '/macroscopic/futures_foreign_hist/CAD',
                             breadcrumbs: false
                         }
                     ]
@@ -58,7 +58,7 @@ const economic = {
                     id: 'macroscopic-ppi',
                     title: '生产者物价指数 PPI',
                     type: 'item',
-                    url: '/icons/material-icons',
+                    url: '/macroscopic/cn/ppi',
                     breadcrumbs: false
                 },
                 {
