@@ -7,7 +7,7 @@ import ReactECharts from 'echarts-for-react';
 import MainCard from 'ui-component/cards/MainCard';
 import { Grid } from '@mui/material';
 import cloneDeep from 'lodash.clonedeep';
-import axios from '../../../utils/axios'
+import axios from 'utils/axios';
 
 function EquityBbondYieldSpreadsEcharts() {
     const DEFAULT_OPTION = {

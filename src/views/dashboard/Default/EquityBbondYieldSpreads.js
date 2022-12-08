@@ -5,7 +5,7 @@ import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 import MainCard from 'ui-component/cards/MainCard';
 import chartData from './chart-data/generate-day-wise-time-series';
-import axios from '../../../utils/axios';
+import axios from 'utils/axios';
 
 function EquityBbondYieldSpreads({ isLoading }) {
     useEffect(() => {
