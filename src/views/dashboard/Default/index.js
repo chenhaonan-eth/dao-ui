@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // material-ui
 import { Grid } from '@mui/material';
 
-import EquityBbondYieldSpreadsEcharts from './EquityBbondYieldSpreadsEcharts';
+import TotalGrowthBarChart from './TotalGrowthBarChart';
 import PopularCard from './PopularCard';
 import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 import TotalIncomeDarkCard from './TotalIncomeDarkCard';
@@ -45,7 +45,7 @@ const Dashboard = () => {
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item xs={12} md={8}>
-                        <EquityBbondYieldSpreadsEcharts isLoading={isLoading} />
+                        <TotalGrowthBarChart isLoading={isLoading} />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <PopularCard isLoading={isLoading} />

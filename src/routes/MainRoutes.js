@@ -8,7 +8,7 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // Macroscopic routing
-const MacroscopicSh300pe = Loadable(lazy(() => import('views/macroscopic/Sh300pe')));
+const MacroscopicSh300pe = Loadable(lazy(() => import('views/macroscopic/SH300')));
 const MacroscopicBondZhUsRate = Loadable(lazy(() => import('views/macroscopic/BondZhUsRate')));
 const MacroscopicSocialFinancingFlows = Loadable(lazy(() => import('views/macroscopic/SocialFinancingFlows')));
 const MacroscopicSocialFinancingStock = Loadable(lazy(() => import('views/macroscopic/SocialFinancingStock')));
