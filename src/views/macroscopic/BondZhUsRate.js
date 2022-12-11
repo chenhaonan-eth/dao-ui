@@ -154,7 +154,6 @@ const BondZhUsRate = () => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    console.log('￥￥￥', response);
                     const zhOption = cloneDeep(chart1);
                     const usOption = cloneDeep(chart2);
                     // eslint-disable-next-line no-plusplus
@@ -188,8 +187,6 @@ const BondZhUsRate = () => {
                             usOption.series[4].data.push(response.results[i].uS102Years); // 美国国债收益率10年-2年
                         }
                     }
-                    console.log('@@@', zhOption);
-                    console.log('@@@', usOption);
                     ApexCharts.exec(`bond_zh_rate`, 'updateOptions', zhOption.options);
                     ApexCharts.exec(`bond_zh_rate`, 'updateSeries', zhOption.series);
 
