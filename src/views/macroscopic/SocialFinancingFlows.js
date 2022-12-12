@@ -90,7 +90,10 @@ const SocialFinancingFlows = () => {
             },
             xaxis: {
                 type: 'datetime',
-                categories: []
+                categories: [],
+                labels: {
+                    datetimeUTC: false
+                }
             }
         }
     };

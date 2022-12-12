@@ -83,7 +83,6 @@ const FuturesForeignHist = () => {
                         newOption.series[0].data.push(parseFloat(response.results[i].lose));
                         newOption.series[1].data.push(parseFloat(response.results[i].volume));
                     }
-                    console.log('$$$$$$', newOption);
                     newOption.options.title.text = `期货${response.results[0].symbol}`;
                     ApexCharts.exec(`futures_foreign_hist`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`futures_foreign_hist`, 'updateSeries', newOption.series);

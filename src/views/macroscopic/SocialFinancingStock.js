@@ -104,7 +104,10 @@ const SocialFinancingStock = () => {
             },
             xaxis: {
                 type: 'datetime',
-                categories: []
+                categories: [],
+                labels: {
+                    datetimeUTC: false
+                }
             }
         }
     };
@@ -197,7 +200,10 @@ const SocialFinancingStock = () => {
             },
             xaxis: {
                 type: 'datetime',
-                categories: []
+                categories: [],
+                labels: {
+                    datetimeUTC: false
+                }
             }
         }
     };

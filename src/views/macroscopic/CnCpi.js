@@ -15,73 +15,76 @@ import axios from 'utils/axios';
 // ===========================|| SH300 ||=========================== //
 
 const CnCpi = () => {
-    const options = {
+    const chart1 = {
         series: [
             {
-                data: [1, 42, 34, 5, 76, 87]
+                name: '全国同比增加(%)',
+                data: []
+            },
+            {
+                name: '城市同比增加(%)',
+                data: []
+            },
+            {
+                name: '农村同比增加(%)',
+                data: []
+            },
+            {
+                name: '全国当月',
+                data: []
+            },
+            {
+                name: '城市当月',
+                data: []
+            },
+            {
+                name: '农村当月',
+                data: []
             }
         ],
-        height: 230,
+        height: 480,
         options: {
             chart: {
-                id: 'chart2',
-                type: 'line',
-                toolbar: {
-                    autoSelected: 'pan',
-                    show: false
+                id: 'cpi',
+                type: 'line'
+            },
+            title: {
+                text: '消费者物价指数 CPI',
+                align: 'left'
+            },
+            tooltip: {
+                x: {
+                    format: 'M/yyyy'
                 }
             },
-            colors: ['#546E7A'],
-            stroke: {
-                width: 3
-            },
-            dataLabels: {
-                enabled: false
+            legend: {
+                position: 'top'
             },
             fill: {
-                opacity: 1
+                type: 'solid'
+            },
+            stroke: {
+                width: 2,
+                curve: 'straight'
+            },
+            noData: {
+                text: 'Loading...'
             },
             markers: {
                 size: 0
             },
-            xaxis: {
-                type: 'datetime',
-                categories: ['2011/2/13', '2012/2/1', '2013/2/1', '2014/2/1', '2015/4/24', '2017/2/1']
-            }
-        }
-    };
-    const optionsLine = {
-        series: [
-            {
-                data: [1, 42, 34, 5, 76, 87]
-            }
-        ],
-        height: 90,
-        options: {
-            chart: {
-                id: 'chart1',
-                brush: {
-                    target: 'chart2',
-                    autoScaleYaxis: true,
-                    enabled: true
-                },
-                selection: {
-                    enabled: true,
-                    xaxis: {
-                        min: new Date('2015/2/13').getTime(),
-                        max: new Date('2017/2/1').getTime()
-                    }
-                }
+            animations: {
+                enabled: false
+            },
+            dataLabels: {
+                enabled: false
             },
             xaxis: {
                 type: 'datetime',
-                categories: ['2011/2/13', '2012/2/1', '2013/2/1', '2014/2/1', '2015/4/24', '2017/2/1'],
-                tooltip: {
-                    enabled: false
+                categories: [],
+                labels: {
+                    datetimeUTC: false
                 }
-            },
-            yaxis: {
-                tickAmount: 2
             }
         }
     };
@@ -89,13 +92,36 @@ const CnCpi = () => {
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
+        axios('get', location.pathname)
+            .then((response) => {
+                if (response && response.results && response.results.length > 0) {
+                    const newOption = cloneDeep(chart1);
+                    // eslint-disable-next-line no-plusplus
+                    for (let i = 0; i < response.results.length; i++) {
+                        newOption.options.xaxis.categories.push(response.results[i].date);
+                        newOption.series[0].data.push(Math.floor(response.results[i].nationalYearOnYear * 100) / 100);
+                        newOption.series[1].data.push(Math.floor(response.results[i].cityYearOnYear * 100) / 100);
+                        newOption.series[2].data.push(Math.floor(response.results[i].ruralYearOnYear * 100) / 100);
+                        newOption.series[3].data.push(Math.floor(response.results[i].national * 100) / 100);
+                        newOption.series[4].data.push(Math.floor(response.results[i].city * 100) / 100);
+                        newOption.series[5].data.push(Math.floor(response.results[i].rural * 100) / 100);
+                    }
+                    ApexCharts.exec(`cpi`, 'updateOptions', newOption.options);
+                    ApexCharts.exec(`cpi`, 'updateSeries', newOption.series);
+                    enqueueSnackbar('消费者物价指数 CPI', { variant: 'success' });
+                } else {
+                    enqueueSnackbar('消费者物价指数 CPI find data is null', { variant: 'error' });
+                }
+            })
+            .catch(() => {
+                enqueueSnackbar(`消费者物价指数 CPI find data err`, { variant: 'error' });
+            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <MainCard>
-            <Chart {...options} />
-            <Chart {...optionsLine} />
+            <Chart {...chart1} />
         </MainCard>
     );
 };
