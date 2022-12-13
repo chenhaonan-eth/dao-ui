@@ -1,12 +1,8 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/jsx-boolean-value */
 // 股债利率差
 import { useState, useEffect } from 'react';
 import ReactECharts from 'echarts-for-react';
 import MainCard from 'ui-component/cards/MainCard';
 import { Grid } from '@mui/material';
-import cloneDeep from 'lodash.clonedeep';
 import axios from 'utils/axios';
 
 function EquityBbondYieldSpreadsEcharts() {
@@ -91,22 +87,21 @@ function EquityBbondYieldSpreadsEcharts() {
         }
     };
 
-    const [option, setOption] = useState(DEFAULT_OPTION);
+    const [newOption, setNewOption] = useState(DEFAULT_OPTION);
 
     useEffect(() => {
-            axios('get','/getEquityBbondYieldSpreads').
-            then((response) => {
-            const newOption = cloneDeep(option);
+        axios('get', '/getEquityBbondYieldSpreads').then((response) => {
             newOption.series.data = Object.values(response.data);
             newOption.xAxis.data = Object.keys(response.data);
-            setOption(newOption);
+            setNewOption(newOption);
         });
-    }, [option]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <MainCard>
             <Grid item xs={12}>
-                <ReactECharts option={option} />
+                <ReactECharts option={newOption} />
             </Grid>
         </MainCard>
     );

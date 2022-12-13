@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -78,21 +77,21 @@ const CnPpi = () => {
     };
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
-
+    const [newOption, setNewOption] = useState(chart1);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const newOption = cloneDeep(chart1);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
-                        newOption.series[0].data.push(parseFloat(response.results[i].ppi));
-                        newOption.series[1].data.push(parseFloat(response.results[i].yearOnYear));
-                        newOption.series[2].data.push(parseFloat(response.results[i].accumulative));
+                        newOption.series[0].data.push(Math.floor(response.results[i].ppi * 100) / 100);
+                        newOption.series[1].data.push(Math.floor(response.results[i].yearOnYear * 100) / 100);
+                        newOption.series[2].data.push(Math.floor(response.results[i].accumulative * 100) / 100);
                     }
                     ApexCharts.exec(`ppi`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`ppi`, 'updateSeries', newOption.series);
+                    setNewOption(newOption);
                     enqueueSnackbar('工业生产者价格指数', { variant: 'success' });
                 } else {
                     enqueueSnackbar('工业生产者价格指数 find data is null', { variant: 'error' });
@@ -106,7 +105,7 @@ const CnPpi = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
+            <Chart {...newOption} />
         </MainCard>
     );
 };

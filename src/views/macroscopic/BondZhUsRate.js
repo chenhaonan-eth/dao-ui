@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -149,13 +148,12 @@ const BondZhUsRate = () => {
     };
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
-
+    const [zhOption, setZhOption] = useState(chart1);
+    const [usOption, setUsOption] = useState(chart2);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const zhOption = cloneDeep(chart1);
-                    const usOption = cloneDeep(chart2);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         if (
@@ -189,10 +187,10 @@ const BondZhUsRate = () => {
                     }
                     ApexCharts.exec(`bond_zh_rate`, 'updateOptions', zhOption.options);
                     ApexCharts.exec(`bond_zh_rate`, 'updateSeries', zhOption.series);
-
+                    setZhOption(zhOption);
                     ApexCharts.exec(`bond_Us_rate`, 'updateOptions', usOption.options);
                     ApexCharts.exec(`bond_Us_rate`, 'updateSeries', usOption.series);
-
+                    setUsOption(usOption);
                     enqueueSnackbar('中美国债', { variant: 'success' });
                 } else {
                     enqueueSnackbar('中美国债 find data is null', { variant: 'error' });
@@ -206,8 +204,8 @@ const BondZhUsRate = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
-            <Chart {...chart2} />
+            <Chart {...zhOption} />
+            <Chart {...usOption} />
         </MainCard>
     );
 };

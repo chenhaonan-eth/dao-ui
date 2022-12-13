@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -210,13 +209,12 @@ const SocialFinancingStock = () => {
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
 
+    const [option, setOption] = useState(chart1);
+    const [bgrowthrateOption, setBgrowthrateOption] = useState(chart2);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const option = cloneDeep(chart1);
-                    const bgrowthrateOption = cloneDeep(chart2);
-                    console.log('&&&&&&', response);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         option.options.xaxis.categories.push(response.results[i].date);
@@ -245,14 +243,12 @@ const SocialFinancingStock = () => {
                         // bgrowthrateOption.series[9].data.push(parseFloat(response.results[i].loansWrittenOffgrowthrate));
                         // bgrowthrateOption.series[10].data.push(parseFloat(response.results[i].governmentBondsgrowthrate));
                     }
-                    console.log('@@@', option);
-                    console.log('@@@', bgrowthrateOption);
                     ApexCharts.exec(`social_financing_stock`, 'updateOptions', option.options);
                     ApexCharts.exec(`social_financing_stock`, 'updateSeries', option.series);
-
+                    setOption(option);
                     ApexCharts.exec(`social_financing_stock2`, 'updateOptions', bgrowthrateOption.options);
                     ApexCharts.exec(`social_financing_stock2`, 'updateSeries', bgrowthrateOption.series);
-
+                    setBgrowthrateOption(bgrowthrateOption);
                     enqueueSnackbar('中国社会融资规模存量', { variant: 'success' });
                 } else {
                     enqueueSnackbar('中国社会融资规模存量 find data is null', { variant: 'error' });
@@ -266,8 +262,8 @@ const SocialFinancingStock = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
-            <Chart {...chart2} />
+            <Chart {...option} />
+            <Chart {...bgrowthrateOption} />
         </MainCard>
     );
 };

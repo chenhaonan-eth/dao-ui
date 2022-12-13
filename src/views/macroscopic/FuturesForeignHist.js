@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -71,12 +70,11 @@ const FuturesForeignHist = () => {
     };
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
-
+    const [newOption, setNewOption] = useState(chart1);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const newOption = cloneDeep(chart1);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
@@ -86,6 +84,7 @@ const FuturesForeignHist = () => {
                     newOption.options.title.text = `期货${response.results[0].symbol}`;
                     ApexCharts.exec(`futures_foreign_hist`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`futures_foreign_hist`, 'updateSeries', newOption.series);
+                    setNewOption(newOption);
                     enqueueSnackbar('期货', { variant: 'success' });
                 } else {
                     enqueueSnackbar('期货 find data is null', { variant: 'error' });
@@ -99,7 +98,7 @@ const FuturesForeignHist = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
+            <Chart {...newOption} />
         </MainCard>
     );
 };

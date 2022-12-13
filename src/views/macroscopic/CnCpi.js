@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -90,12 +89,11 @@ const CnCpi = () => {
     };
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
-
+    const [newOption, setNewOption] = useState(chart1);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const newOption = cloneDeep(chart1);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
@@ -108,6 +106,7 @@ const CnCpi = () => {
                     }
                     ApexCharts.exec(`cpi`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`cpi`, 'updateSeries', newOption.series);
+                    setNewOption(newOption);
                     enqueueSnackbar('消费者物价指数 CPI', { variant: 'success' });
                 } else {
                     enqueueSnackbar('消费者物价指数 CPI find data is null', { variant: 'error' });
@@ -121,7 +120,7 @@ const CnCpi = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
+            <Chart {...newOption} />
         </MainCard>
     );
 };

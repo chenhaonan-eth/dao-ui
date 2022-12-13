@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,6 @@ import MainCard from 'ui-component/cards/MainCard';
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-import cloneDeep from 'lodash.clonedeep';
 // notification
 import { useSnackbar } from 'notistack';
 // axios
@@ -100,11 +99,11 @@ const SocialFinancingFlows = () => {
     const location = useLocation();
     const { enqueueSnackbar } = useSnackbar();
 
+    const [newOption, setNewOption] = useState(chart1);
     useEffect(() => {
         axios('get', location.pathname)
             .then((response) => {
                 if (response && response.results && response.results.length > 0) {
-                    const newOption = cloneDeep(chart1);
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
@@ -119,6 +118,7 @@ const SocialFinancingFlows = () => {
                     }
                     ApexCharts.exec(`social_financing_flows`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`social_financing_flows`, 'updateSeries', newOption.series);
+                    setNewOption(newOption);
                     enqueueSnackbar('Social Financing Flows', { variant: 'success' });
                 } else {
                     enqueueSnackbar('SocialFinancingFlows find data is null', { variant: 'error' });
@@ -132,7 +132,7 @@ const SocialFinancingFlows = () => {
 
     return (
         <MainCard>
-            <Chart {...chart1} />
+            <Chart {...newOption} />
         </MainCard>
     );
 };
