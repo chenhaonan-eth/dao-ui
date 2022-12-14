@@ -13,31 +13,31 @@ import { useSnackbar } from 'notistack';
 import axios from 'utils/axios';
 // ===========================|| SH300 ||=========================== //
 
-const FuturesForeignHist = () => {
+const ValueAddedOfIndustrialProduction = () => {
     const chart1 = {
         series: [
             {
-                name: '收盘价',
+                name: '同比增长(%)',
                 data: []
             },
             {
-                name: '成交量',
+                name: '累计增长(%)',
                 data: []
             }
         ],
         height: 480,
         options: {
             chart: {
-                id: 'futures_foreign_hist',
+                id: 'valueAddedOfIndustrialProduction',
                 type: 'line'
             },
             title: {
-                text: '期货',
+                text: '工业生产增加值',
                 align: 'left'
             },
             tooltip: {
                 x: {
-                    format: 'dd/MM/yyyy'
+                    format: 'M/yyyy'
                 }
             },
             legend: {
@@ -81,20 +81,19 @@ const FuturesForeignHist = () => {
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
-                        newOption.series[0].data.push(parseFloat(response.results[i].lose));
-                        newOption.series[1].data.push(parseFloat(response.results[i].volume));
+                        newOption.series[0].data.push(response.results[i].yearOnYear);
+                        newOption.series[1].data.push(response.results[i].cumulativeGrowth);
                     }
-                    newOption.options.title.text = `期货${response.results[0].symbol}`;
-                    ApexCharts.exec(`futures_foreign_hist`, 'updateOptions', newOption.options);
-                    ApexCharts.exec(`futures_foreign_hist`, 'updateSeries', newOption.series);
+                    ApexCharts.exec(`valueAddedOfIndustrialProduction`, 'updateOptions', newOption.options);
+                    ApexCharts.exec(`valueAddedOfIndustrialProduction`, 'updateSeries', newOption.series);
                     setNewOption(newOption);
-                    enqueueSnackbar('期货', { variant: 'success' });
+                    enqueueSnackbar('工业生产增加值', { variant: 'success' });
                 } else {
-                    enqueueSnackbar('期货 find data is null', { variant: 'error' });
+                    enqueueSnackbar('工业生产增加值 find data is null', { variant: 'error' });
                 }
             })
             .catch(() => {
-                enqueueSnackbar(`期货 find data err`, { variant: 'error' });
+                enqueueSnackbar(`工业生产增加值 find data err`, { variant: 'error' });
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -106,4 +105,4 @@ const FuturesForeignHist = () => {
     );
 };
 
-export default FuturesForeignHist;
+export default ValueAddedOfIndustrialProduction;

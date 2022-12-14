@@ -76,6 +76,13 @@ const economic = {
                     breadcrumbs: false
                 },
                 {
+                    id: 'macroscopic-cxpmi',
+                    title: '财新采购经理人指数 PMI',
+                    type: 'item',
+                    url: '/macroscopic/cx_pmi',
+                    breadcrumbs: false
+                },
+                {
                     id: 'macroscopic-cpi',
                     title: '消费者物价指数 CPI',
                     type: 'item',
@@ -94,6 +101,13 @@ const economic = {
                     title: '社会消费品零售总额',
                     type: 'item',
                     url: '/macroscopic/consumer_goods_retail',
+                    breadcrumbs: false
+                },
+                {
+                    id: 'value-added-of-industrial-production',
+                    title: '工业生产增长',
+                    type: 'item',
+                    url: '/macroscopic/value_added_of_industrial_production',
                     breadcrumbs: false
                 }
             ]

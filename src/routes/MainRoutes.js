@@ -19,7 +19,8 @@ const MacroscopicCnPmi = Loadable(lazy(() => import('views/macroscopic/CnPmi')))
 const MacroscopicCnCpi = Loadable(lazy(() => import('views/macroscopic/CnCpi')));
 const MacroscopicMoneySupply = Loadable(lazy(() => import('views/macroscopic/MoneySupply')));
 const MacroscopicConsumerGoodsRetail = Loadable(lazy(() => import('views/macroscopic/ConsumerGoodsRetail')));
-
+const MacroscopicCxPmi = Loadable(lazy(() => import('views/macroscopic/CxPmi')));
+const MacroscopicValueAddedOfIndustrialProduction = Loadable(lazy(() => import('views/macroscopic/ValueAddedOfIndustrialProduction')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -67,16 +68,24 @@ const MainRoutes = {
             element: <MacroscopicCnPmi />
         },
         {
+            path: 'macroscopic/cx_pmi',
+            element: <MacroscopicCxPmi />
+        },
+        {
             path: 'macroscopic/cn/cpi',
             element: <MacroscopicCnCpi />
         },
         {
-            path: '/macroscopic/cn/money_supply',
+            path: 'macroscopic/cn/money_supply',
             element: <MacroscopicMoneySupply />
         },
         {
-            path: '/macroscopic/consumer_goods_retail',
+            path: 'macroscopic/consumer_goods_retail',
             element: <MacroscopicConsumerGoodsRetail />
+        },
+        {
+            path: 'macroscopic/value_added_of_industrial_production',
+            element: <MacroscopicValueAddedOfIndustrialProduction />
         },
         {
             path: '*', // 404 page

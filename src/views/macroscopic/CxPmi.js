@@ -13,31 +13,47 @@ import { useSnackbar } from 'notistack';
 import axios from 'utils/axios';
 // ===========================|| SH300 ||=========================== //
 
-const FuturesForeignHist = () => {
+const CnPmi = () => {
     const chart1 = {
         series: [
             {
-                name: '收盘价',
+                name: '制造业',
                 data: []
             },
             {
-                name: '成交量',
+                name: '服务业',
+                data: []
+            },
+            {
+                name: '综合',
+                data: []
+            },
+            {
+                name: '制造业环比 %',
+                data: []
+            },
+            {
+                name: '服务业环比 %',
+                data: []
+            },
+            {
+                name: '综合环比 %',
                 data: []
             }
         ],
         height: 480,
         options: {
             chart: {
-                id: 'futures_foreign_hist',
+                id: 'cxpmi',
                 type: 'line'
             },
             title: {
-                text: '期货',
+                text: '财新采购经理人指数 PMI',
                 align: 'left'
             },
             tooltip: {
                 x: {
-                    format: 'dd/MM/yyyy'
+                    format: 'M/yyyy'
                 }
             },
             legend: {
@@ -81,20 +97,23 @@ const FuturesForeignHist = () => {
                     // eslint-disable-next-line no-plusplus
                     for (let i = 0; i < response.results.length; i++) {
                         newOption.options.xaxis.categories.push(response.results[i].date);
-                        newOption.series[0].data.push(parseFloat(response.results[i].lose));
-                        newOption.series[1].data.push(parseFloat(response.results[i].volume));
+                        newOption.series[0].data.push(response.results[i].manufacture);
+                        newOption.series[1].data.push(response.results[i].service);
+                        newOption.series[2].data.push(response.results[i].synthesis);
+                        newOption.series[3].data.push(response.results[i].manufactureYearOverYear);
+                        newOption.series[4].data.push(response.results[i].serviceYearOverYear);
+                        newOption.series[5].data.push(response.results[i].synthesisYearOverYear);
                     }
-                    newOption.options.title.text = `期货${response.results[0].symbol}`;
-                    ApexCharts.exec(`futures_foreign_hist`, 'updateOptions', newOption.options);
-                    ApexCharts.exec(`futures_foreign_hist`, 'updateSeries', newOption.series);
+                    ApexCharts.exec(`cxpmi`, 'updateOptions', newOption.options);
+                    ApexCharts.exec(`cxpmi`, 'updateSeries', newOption.series);
                     setNewOption(newOption);
-                    enqueueSnackbar('期货', { variant: 'success' });
+                    enqueueSnackbar('财新采购经理人指数 PMI', { variant: 'success' });
                 } else {
-                    enqueueSnackbar('期货 find data is null', { variant: 'error' });
+                    enqueueSnackbar('财新采购经理人指数 PMI find data is null', { variant: 'error' });
                 }
             })
             .catch(() => {
-                enqueueSnackbar(`期货 find data err`, { variant: 'error' });
+                enqueueSnackbar(`财新采购经理人指数 PMI find data err`, { variant: 'error' });
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -106,4 +125,4 @@ const FuturesForeignHist = () => {
     );
 };
 
-export default FuturesForeignHist;
+export default CnPmi;
