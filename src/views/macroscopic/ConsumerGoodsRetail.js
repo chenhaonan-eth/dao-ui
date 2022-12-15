@@ -44,7 +44,7 @@ const ConsumerGoodsRetail = () => {
                 type: 'line'
             },
             title: {
-                text: '货币供应',
+                text: '消费品零售   ',
                 align: 'left'
             },
             tooltip: {
