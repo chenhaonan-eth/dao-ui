@@ -21,6 +21,7 @@ const MacroscopicMoneySupply = Loadable(lazy(() => import('views/macroscopic/Mon
 const MacroscopicConsumerGoodsRetail = Loadable(lazy(() => import('views/macroscopic/ConsumerGoodsRetail')));
 const MacroscopicCxPmi = Loadable(lazy(() => import('views/macroscopic/CxPmi')));
 const MacroscopicValueAddedOfIndustrialProduction = Loadable(lazy(() => import('views/macroscopic/ValueAddedOfIndustrialProduction')));
+const MacroscopicSocialElectricityConsumption = Loadable(lazy(() => import('views/macroscopic/SocialElectricityConsumption')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -86,6 +87,10 @@ const MainRoutes = {
         {
             path: 'macroscopic/value_added_of_industrial_production',
             element: <MacroscopicValueAddedOfIndustrialProduction />
+        },
+        {
+            path: 'macroscopic/social_electricity_consumption',
+            element: <MacroscopicSocialElectricityConsumption />
         },
         {
             path: '*', // 404 page

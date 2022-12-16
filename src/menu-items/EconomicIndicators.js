@@ -109,6 +109,13 @@ const economic = {
                     type: 'item',
                     url: '/macroscopic/value_added_of_industrial_production',
                     breadcrumbs: false
+                },
+                {
+                    id: 'social-electricity-consumption',
+                    title: '全社会用电',
+                    type: 'item',
+                    url: '/macroscopic/social_electricity_consumption',
+                    breadcrumbs: false
                 }
             ]
         }
