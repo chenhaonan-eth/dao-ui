@@ -116,6 +116,13 @@ const economic = {
                     type: 'item',
                     url: '/macroscopic/social_electricity_consumption',
                     breadcrumbs: false
+                },
+                {
+                    id: 'passenger-and-freight-traffic',
+                    title: '全社客货运输量',
+                    type: 'item',
+                    url: '/macroscopic/passenger_and_freight_traffic',
+                    breadcrumbs: false
                 }
             ]
         }

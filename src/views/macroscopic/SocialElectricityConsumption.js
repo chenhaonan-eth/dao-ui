@@ -89,7 +89,6 @@ const SocialElectricityConsumption = () => {
                             // newOption.series[3].data.push(parseFloat(response.results[i].allIndustriesYearOnYear));
                         }
                     }
-                    console.log('@@@@', newOption);
                     ApexCharts.exec(`social_electricity_consumption`, 'updateOptions', newOption.options);
                     ApexCharts.exec(`social_electricity_consumption`, 'updateSeries', newOption.series);
                     setNewOption(newOption);

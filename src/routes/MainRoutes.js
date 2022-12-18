@@ -22,6 +22,7 @@ const MacroscopicConsumerGoodsRetail = Loadable(lazy(() => import('views/macrosc
 const MacroscopicCxPmi = Loadable(lazy(() => import('views/macroscopic/CxPmi')));
 const MacroscopicValueAddedOfIndustrialProduction = Loadable(lazy(() => import('views/macroscopic/ValueAddedOfIndustrialProduction')));
 const MacroscopicSocialElectricityConsumption = Loadable(lazy(() => import('views/macroscopic/SocialElectricityConsumption')));
+const MacroscopicPassengerAndFreightTraffic = Loadable(lazy(() => import('views/macroscopic/PassengerAndFreightTraffic')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -91,6 +92,10 @@ const MainRoutes = {
         {
             path: 'macroscopic/social_electricity_consumption',
             element: <MacroscopicSocialElectricityConsumption />
+        },
+        {
+            path: 'macroscopic/passenger_and_freight_traffic',
+            element: <MacroscopicPassengerAndFreightTraffic />
         },
         {
             path: '*', // 404 page
