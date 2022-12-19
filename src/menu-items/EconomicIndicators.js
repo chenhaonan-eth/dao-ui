@@ -123,6 +123,20 @@ const economic = {
                     type: 'item',
                     url: '/macroscopic/passenger_and_freight_traffic',
                     breadcrumbs: false
+                },
+                {
+                    id: 'new-financial-credit',
+                    title: '中国新增信贷数据',
+                    type: 'item',
+                    url: '/macroscopic/new_financial_credit',
+                    breadcrumbs: false
+                },
+                {
+                    id: 'foreign-reserve-and-gold',
+                    title: '外汇储备与黄金',
+                    type: 'item',
+                    url: '/macroscopic/foreign_reserve_and_gold',
+                    breadcrumbs: false
                 }
             ]
         }

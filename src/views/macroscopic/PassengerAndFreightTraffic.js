@@ -121,6 +121,7 @@ const PassengerAndFreightTraffic = () => {
                                     newOption.series[2].data.push(parseFloat(freightVolumeYearOnYear));
                                     break;
                                 case 'CivilAviation':
+                                    newOption.options.xaxis.categories.push(response.results[i].date);
                                     newOption.series[3].data.push(parseFloat(freightVolumeYearOnYear));
                                     break;
                                 case 'WaterTransport':
@@ -133,7 +134,6 @@ const PassengerAndFreightTraffic = () => {
                                     newOption.series[6].data.push(parseFloat(freightVolumeYearOnYear));
                                     break;
                                 case 'Total':
-                                    newOption.options.xaxis.categories.push(response.results[i].date);
                                     newOption.series[7].data.push(parseFloat(freightVolumeYearOnYear));
                                     break;
                                 default:

@@ -23,6 +23,9 @@ const MacroscopicCxPmi = Loadable(lazy(() => import('views/macroscopic/CxPmi')))
 const MacroscopicValueAddedOfIndustrialProduction = Loadable(lazy(() => import('views/macroscopic/ValueAddedOfIndustrialProduction')));
 const MacroscopicSocialElectricityConsumption = Loadable(lazy(() => import('views/macroscopic/SocialElectricityConsumption')));
 const MacroscopicPassengerAndFreightTraffic = Loadable(lazy(() => import('views/macroscopic/PassengerAndFreightTraffic')));
+const MacroscopicNewFinancialCredit = Loadable(lazy(() => import('views/macroscopic/NewFinancialCredit')));
+const MacroscopicForeignReserveAndGold = Loadable(lazy(() => import('views/macroscopic/ForeignReserveAndGold')));
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -96,6 +99,14 @@ const MainRoutes = {
         {
             path: 'macroscopic/passenger_and_freight_traffic',
             element: <MacroscopicPassengerAndFreightTraffic />
+        },
+        {
+            path: 'macroscopic/new_financial_credit',
+            element: <MacroscopicNewFinancialCredit />
+        },
+        {
+            path: 'macroscopic/foreign_reserve_and_gold',
+            element: <MacroscopicForeignReserveAndGold />
         },
         {
             path: '*', // 404 page
