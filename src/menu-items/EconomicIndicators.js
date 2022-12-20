@@ -137,6 +137,13 @@ const economic = {
                     type: 'item',
                     url: '/macroscopic/foreign_reserve_and_gold',
                     breadcrumbs: false
+                },
+                {
+                    id: 'investment-in-fixed-assets',
+                    title: '固定资产投资',
+                    type: 'item',
+                    url: '/macroscopic/investment_in_fixed_assets',
+                    breadcrumbs: false
                 }
             ]
         }

@@ -25,7 +25,7 @@ const MacroscopicSocialElectricityConsumption = Loadable(lazy(() => import('view
 const MacroscopicPassengerAndFreightTraffic = Loadable(lazy(() => import('views/macroscopic/PassengerAndFreightTraffic')));
 const MacroscopicNewFinancialCredit = Loadable(lazy(() => import('views/macroscopic/NewFinancialCredit')));
 const MacroscopicForeignReserveAndGold = Loadable(lazy(() => import('views/macroscopic/ForeignReserveAndGold')));
-
+const MacroscopicInvestmentInFixedAssets = Loadable(lazy(() => import('views/macroscopic/InvestmentInFixedAssets')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -107,6 +107,10 @@ const MainRoutes = {
         {
             path: 'macroscopic/foreign_reserve_and_gold',
             element: <MacroscopicForeignReserveAndGold />
+        },
+        {
+            path: 'macroscopic/investment_in_fixed_assets',
+            element: <MacroscopicInvestmentInFixedAssets />
         },
         {
             path: '*', // 404 page
