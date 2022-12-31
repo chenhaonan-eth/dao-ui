@@ -26,6 +26,9 @@ const MacroscopicPassengerAndFreightTraffic = Loadable(lazy(() => import('views/
 const MacroscopicNewFinancialCredit = Loadable(lazy(() => import('views/macroscopic/NewFinancialCredit')));
 const MacroscopicForeignReserveAndGold = Loadable(lazy(() => import('views/macroscopic/ForeignReserveAndGold')));
 const MacroscopicInvestmentInFixedAssets = Loadable(lazy(() => import('views/macroscopic/InvestmentInFixedAssets')));
+const MacroscopicHousingStartsUnderConstructionCompletion = Loadable(
+    lazy(() => import('views/macroscopic/HousingStartsUnderConstructionCompletion'))
+);
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -111,6 +114,10 @@ const MainRoutes = {
         {
             path: 'macroscopic/investment_in_fixed_assets',
             element: <MacroscopicInvestmentInFixedAssets />
+        },
+        {
+            path: 'macroscopic/housing_starts_under_construction_completion',
+            element: <MacroscopicHousingStartsUnderConstructionCompletion />
         },
         {
             path: '*', // 404 page

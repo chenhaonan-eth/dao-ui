@@ -144,6 +144,13 @@ const economic = {
                     type: 'item',
                     url: '/macroscopic/investment_in_fixed_assets',
                     breadcrumbs: false
+                },
+                {
+                    id: 'housing-starts-under-construction-completion',
+                    title: '房地产施工、开工、竣工面积',
+                    type: 'item',
+                    url: '/macroscopic/housing_starts_under_construction_completion',
+                    breadcrumbs: false
                 }
             ]
         }
